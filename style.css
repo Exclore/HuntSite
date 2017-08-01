@@ -47,13 +47,24 @@ ul#menu-content-list > li{
 ul#menu-content-list > li li{
     line-height: initial;
 }
-
+7
 ul#menu-content-list li{
 	cursor:pointer;
 }
-ul#menu-content-list > li:hover{
+ul#menu-content-list span{
+	cursor:pointer;
+}
+
+ul#menu-content-list > li > span:hover{
+	color:red;
+}
+
+ul#menu-content-list ul > li{
+	color:black;
+}
+
+ul#menu-content-list ul > li:hover{
 	color:#4444ff;
-	text-decoration:underline;
 }
 
 #menu-content-list ul {
@@ -65,4 +76,12 @@ ul#menu-content-list > li:hover{
 }
 .in {
     opacity: 1;
+}
+
+/* Inline styles moved to a external style sheet */
+.listItem {
+	padding-left:40px;
+	background-repeat:no-repeat !important;
+	background-size:auto 32px !important;
+	padding-bottom: 3px;
 }

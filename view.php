@@ -3,8 +3,8 @@
 <head>
 <link rel="stylesheet" href="style.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script type="text/javascript" src="controller.js"></script>
 <script src="collapse-menu.js"></script>
-
 
 </head>
 
@@ -16,29 +16,14 @@
 	<div id="menu">
 		<div id="menu-content">
 			<ul id="menu-content-list">
-			<?php
-				$ClassList= array("Marauder","Gladiator","Pugilist","Lancer","Archer","Conjurer","Thaumaturge","Arcanist","Rogue");
-				$GrandCompanyList= array("Immortal Flames","Twin Adders","Maelstrom");
-				foreach( $ClassList as $class ){
-			?>
-				<li style="background:url('images/<?=$class;?>.png') no-repeat;padding-left:40px;"><?=$class;?><ul>
-					<li><span>lv 1-10</span></li>
-					<li><span>lv 11-20</span></li>
-					<li><span>lv 21-30</span></li>
-					<li><span>lv 31-40</span></li>
-					<li><span>lv 41-50</span></li>
-				</ul></li>
-				<?php }
-				echo "<br /> <hr /> <br />";
-				foreach( $GrandCompanyList as $company ){
-			?>
-				<li style="background:url('images/<?=$company;?>.png') no-repeat;padding-left:40px; margin-bottom:3px; background-size:auto 32px;"><?=$company;?><ul>
-					<li>lv 21-30</li>
-					<li>lv 31-40</li>
-					<li>lv 41-50</li>
-				</ul></li>
-				<?php }
-				?>
+				<!-- 
+					The DOM manipulation/generation has been moved into a javascript controller.
+					This removes the logic from the view, and captures it in a dedicated file for manipulation.
+					Javascript is a client side language, so using it offloads the generation onto the client machine, 
+					as opposed to generating the view on the file. 
+
+					Inline styles have been moved into the external stylesheet (style.css). Inline css should be avoided whenever possible. 
+				-->
 			</ul>
 		</div>
 	</div>

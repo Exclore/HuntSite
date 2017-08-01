@@ -1,10 +1,10 @@
 $( document ).ready(function() {
-$('#menu-content-list').on('click', 'li', function () {
-    $(this).children('ul').slideToggle(function() {
+$('ul#menu-content-list > li > span').on('click', function () {
+    $(this).parent().children('ul').slideToggle(function() {
         $(this).toggleClass('in out');
     });
 
-    $(this).siblings().find('ul').slideUp(function() {
+    $(this).parent().siblings().find('ul').slideUp(function() {
         $(this).removeClass('in').addClass('out');
     });
 });
