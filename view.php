@@ -6,7 +6,7 @@
 <script type="text/javascript" src="controller.js"></script>
 <script src="collapse-menu.js"></script>
 <script src="wheelzoom.js"></script>
-
+<link rel="icon" type="image/png" href="favicon.ico">
 </head>
 
 <body>

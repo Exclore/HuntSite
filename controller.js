@@ -115,12 +115,12 @@ function getClassAndGC(target){
 	var level = target.getAttribute("dataLevel");
 	//console.log("class=" + classGC + " level=" + level);
 	var url = "/json.php?class="+classGC+"&level="+level;
-	console.log("Attempting to query: "+url);
+	//console.log("Attempting to query: "+url);
 	$.getJSON(url, function(data, success){listMonsters(data, target);});
 }
 
 function listMonsters(data, target){
-	console.log(target.getAttribute("dataLevel"));
+	//console.log(target.getAttribute("dataLevel"));
 	var subList = document.createElement('ul');
 	
 	data.forEach(function(element){
@@ -138,7 +138,6 @@ function buildMap()
 {
 	initializeMap();
 	zoomMap();
-	dragMap();
 	monsterMarkers();
 	swapActiveMap();
 }
@@ -149,17 +148,13 @@ function buildMap()
 function initializeMap()
 {
 	var mapImage = document.createElement("img");
-	mapImage.setAttribute("src", "/images/Maps/CoerthasRegion.PNG");
+	mapImage.setAttribute("src", "images/Maps/CoerthasRegion.PNG");
 	document.getElementById("map").appendChild(mapImage);
 }
 
 function zoomMap()
 {
-	wheelzoom(document.querySelectorAll('#map > img'));
-}
-
-function dragMap()
-{
+	wheelzoom(document.querySelectorAll('#map > img')); //initializes the zooming/dragging functions from WheelZoom
 }
 
 function monsterMarkers()
@@ -168,6 +163,14 @@ function monsterMarkers()
 
 function swapActiveMap()
 {
+
+	$('#map > img').click(function() {
+   $('#map > img').fadeOut(300, function(){
+      $(this).attr('src','images/Maps/LaNosceaRegion.PNG').bind('onreadystatechange load', function(){
+         if (this.complete) $(this).fadeIn(300);
+      });
+   });
+});
 }
 
 
