@@ -11,7 +11,13 @@ $('document').ready(function(){
 function buildMenu(){
   buildClassMenu(); // Adds the class's to the nav list
   buildGrandCompanyMenu(); // Adds the grand companies to the list
-  $("ul#menu-content-list > li li > span").on('click', function(e){getClassAndGC(e.currentTarget.parentElement);}); //Make me last, I rely on everything else
+  showMonstersMenu();
+}
+
+function showMonstersMenu()
+{
+	
+	$("ul#menu-content-list > li li > span").each(function(){getClassAndGC($(this).parent().get(0));});
 }
 
 function buildClassMenu(){
@@ -115,7 +121,7 @@ function getClassAndGC(target){
 function listMonsters(data, target){
 	console.log(target.getAttribute("dataLevel"));
 	var subList = document.createElement('ul');
-	$(subList).addClass('in').css("display", "block");
+	//$(subList).addClass('in').css("display", "block");
 	
 	data.forEach(function(element){
 		var subListItem = document.createElement('li');
@@ -127,5 +133,6 @@ function listMonsters(data, target){
 	console.log(subList);
 	target.appendChild(subList);
 }
+
 
 
