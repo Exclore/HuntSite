@@ -24,7 +24,7 @@ function classRankFilter ($class, $rank)
 {
 	global $db;
 	global $basequery;
-	$query = $basequery.' WHERE ClassandGC.Name = "'.$class.'" AND HuntLog.Level = "'.$rank.'"';
+	$query = $basequery.' WHERE ClassandGC.Name = "'.$class.'" AND HuntLog.Level = "'.$rank.'" GROUP BY Name, Location, Xcoord, Ycoord';
 	$result = $db->query($query);
 	return ConvertDBobjToJson($result);
 	

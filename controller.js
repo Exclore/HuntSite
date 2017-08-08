@@ -115,6 +115,7 @@ function getClassAndGC(target){
 function listMonsters(data, target){
 	console.log(target.getAttribute("dataLevel"));
 	var subList = document.createElement('ul');
+	$(subList).addClass('in').css("display", "block");
 	
 	data.forEach(function(element){
 		var subListItem = document.createElement('li');
