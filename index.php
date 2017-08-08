@@ -1,5 +1,5 @@
 <?php
 include 'model.php';
-include 'cotroller.php';
+include 'controller.php';
 include 'view.php';
 ?>

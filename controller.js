@@ -5,18 +5,20 @@ var grandCompanyList = ["Immortal Flames","Twin Adders","Maelstrom"];
 
 $('document').ready(function(){
     buildMenu();
-	
+	buildMap();
 });
 
+//---------------------------------------------------------------------------
+//Menu Functions
+//---------------------------------------------------------------------------
 function buildMenu(){
   buildClassMenu(); // Adds the class's to the nav list
   buildGrandCompanyMenu(); // Adds the grand companies to the list
-  showMonstersMenu();
+  showMonstersMenu(); //add individual monsters per class to the list
 }
 
 function showMonstersMenu()
 {
-	
 	$("ul#menu-content-list > li li > span").each(function(){getClassAndGC($(this).parent().get(0));});
 }
 
@@ -25,14 +27,13 @@ function buildClassMenu(){
 
     // Build list of job hunts
     classList.forEach(function(element){
-            // 
+
             var listItem = document.createElement('li');
             listItem.style.background = "url('images/" + element + ".png')";
             listItem.classList.add('listItem');
             listItem.innerHTML = '<span>'+element+'</span>';
 
 
-            //
             var subList = document.createElement('ul');
 
             var subListItem1 = document.createElement('li');
@@ -112,7 +113,7 @@ function buildGrandCompanyMenu(){
 function getClassAndGC(target){
 	var classGC = target.getAttribute("dataClass");
 	var level = target.getAttribute("dataLevel");
-	console.log("class=" + classGC + " level=" + level);
+	//console.log("class=" + classGC + " level=" + level);
 	var url = "/json.php?class="+classGC+"&level="+level;
 	console.log("Attempting to query: "+url);
 	$.getJSON(url, function(data, success){listMonsters(data, target);});
@@ -121,18 +122,68 @@ function getClassAndGC(target){
 function listMonsters(data, target){
 	console.log(target.getAttribute("dataLevel"));
 	var subList = document.createElement('ul');
-	//$(subList).addClass('in').css("display", "block");
 	
 	data.forEach(function(element){
 		var subListItem = document.createElement('li');
 		subListItem.innerHTML="<span>"+element['Name']+"</span>";
-		//add data classes
-		//register click event
 		subList.appendChild(subListItem);
 	});
-	console.log(subList);
 	target.appendChild(subList);
 }
+
+//---------------------------------------------------------------------------
+//Map Functions
+//---------------------------------------------------------------------------
+function buildMap()
+{
+	initializeMap();
+	zoomMap();
+	dragMap();
+	monsterMarkers();
+	swapActiveMap();
+}
+
+
+
+
+function initializeMap()
+{
+	var mapImage = document.createElement("img");
+	mapImage.setAttribute("src", "/images/Maps/CoerthasRegion.PNG");
+	document.getElementById("map").appendChild(mapImage);
+}
+
+function zoomMap()
+{
+	wheelzoom(document.querySelectorAll('#map > img'));
+}
+
+function dragMap()
+{
+}
+
+function monsterMarkers()
+{
+}
+
+function swapActiveMap()
+{
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
