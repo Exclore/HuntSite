@@ -6,7 +6,9 @@
 <script type="text/javascript" src="controller.js"></script>
 <script src="collapse-menu.js"></script>
 <script src="wheelzoom.js"></script>
-<link rel="icon" type="image/png" href="favicon.ico">
+<link rel="icon" type="image/png" href="favicon.ico" />
+<link rel="stylesheet" href="leaflet.css" />
+<script src="leaflet.js"> </script>
 </head>
 
 <body>
@@ -28,11 +30,10 @@
 			</ul>
 		</div>
 	</div>
-	
-	<div id="map">
-		
+	<div id="maparea">
+		<div id="map">
+		</div>
 	</div>
-	
 </div>
 </div>
 </div>

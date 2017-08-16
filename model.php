@@ -18,7 +18,7 @@ else {
 //var_dump(mysqli_fetch_assoc($testdbdump));
 
 global $basequery; 
-$basequery = 'SELECT Monsters.Name, MonsterLocations.Xcoord, MonsterLocations.Ycoord, Locations.Name As Location, Regions.image as RegionImage FROM HuntLog JOIN ClassandGC ON HuntLog.ClassID = ClassandGC.ID JOIN Monsters ON HuntLog.MonsterID = Monsters.ID JOIN MonsterLocations ON Monsters.ID = MonsterLocations.MonsterID JOIN Locations ON MonsterLocations.LocationID = Locations.ID JOIN AreaRegions ON Locations.ID = AreaRegions.RegionID JOIN Regions ON AreaRegions.RegionID = Regions.ID';
+$basequery = 'SELECT Monsters.Name, MonsterLocations.Xcoord, MonsterLocations.Ycoord, Locations.Name As Location, Regions.image as RegionImage, Locations.ImagePath as AreaImage FROM HuntLog JOIN ClassandGC ON HuntLog.ClassID = ClassandGC.ID JOIN Monsters ON HuntLog.MonsterID = Monsters.ID JOIN MonsterLocations ON Monsters.ID = MonsterLocations.MonsterID JOIN Locations ON MonsterLocations.LocationID = Locations.ID JOIN AreaRegions ON Locations.ID = AreaRegions.RegionID JOIN Regions ON AreaRegions.RegionID = Regions.ID';
 
 function classRankFilter ($class, $rank)
 {
