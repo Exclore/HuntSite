@@ -5,11 +5,20 @@ var map;
 var mapImage;
 var bounds = [[0,0], [42,42]];
 var markerGroup;
+var allData;
 
 $('document').ready(function(){
+	$.ajaxSetup({async:false});
+	$.getJSON("/json.php", function(data, success){setAllData(data)});
+	$.ajaxSetup({async:true});
     buildMenu();
 	buildMap();
 });
+
+function setAllData(data)
+{
+	allData = data;
+}
 
 //---------------------------------------------------------------------------
 //Menu Functions
@@ -133,10 +142,16 @@ function buildGrandCompanyMenu(){
 function getClassAndGC(target){
 	var classGC = target.getAttribute("dataClass");
 	var level = target.getAttribute("dataLevel");
-	//console.log("class=" + classGC + " level=" + level);
-	var url = "/json.php?class="+classGC+"&level="+level;
-	//console.log("Attempting to query: "+url);
-	$.getJSON(url, function(data, success){listMonsters(data, target);});
+	var data = [];
+	for(var i in allData){
+		var obj = allData[i];
+		if(obj['class'] == classGC && parseInt(obj['level']) > level-10 && parseInt(obj['level']) <= level)
+		{
+			data.push(obj);
+		}
+	}
+	console.log(data);
+	listMonsters(data, target);
 }
 
 function listMonsters(data, target){
