@@ -2,8 +2,8 @@
 
 //This one is for the database talking gud
 
-global $db;
-$db = new MySQLi('localhost', 'mapsite', 'bakinb0nes', 'mapsite');
+//global $db;
+//$db = new MySQLi('localhost', 'mapsite', 'bakinb0nes', 'mapsite');
 //Connection Test
 /*if(!$db){
 echo '<!--Unable to connect to DB'-->;

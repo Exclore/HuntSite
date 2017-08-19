@@ -13,11 +13,29 @@ $('document').ready(function(){
 	$.ajaxSetup({async:true});
     buildMenu();
 	buildMap();
+	preloadImages();
 });
 
 function setAllData(data)
 {
 	allData = data;
+}
+function preloadImages()
+{
+	var allImages = [];
+	for(var i in allData)
+	{
+		var img = allData[i]['AreaImage'];
+		if(allImages.indexOf(img) < 0)
+		{
+			allImages.push(img);
+		}
+	}
+	for(var img in allImages)
+	{
+		var newimg = new Image();
+		img.src = img;
+	}
 }
 
 //---------------------------------------------------------------------------

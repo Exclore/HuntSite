@@ -9,6 +9,7 @@
 <link rel="icon" type="image/png" href="favicon.ico" />
 <link rel="stylesheet" href="leaflet.css" />
 <script src="leaflet.js"> </script>
+<?php include_once("ga.php") ?>
 </head>
 
 <body>
