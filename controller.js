@@ -129,24 +129,24 @@ function buildGrandCompanyMenu(){
 
             var subList = document.createElement('ul');
 
-           var subListItem1 = document.createElement('li');
+            var subListItem1 = document.createElement('li');
 			subListItem1.classList.add("level");
             subListItem1.innerHTML = '<span>lv 21-30</span>'
 			subListItem1.setAttribute("dataClass",element);
-			subListItem1.setAttribute("dataLevel","30");
+			subListItem1.setAttribute("dataLevel","10");
 			
 			
             var subListItem2 = document.createElement('li');
 			subListItem2.classList.add("level");
             subListItem2.innerHTML = '<span>lv 31-40</span>'                
 			subListItem2.setAttribute("dataClass",element);
-			subListItem2.setAttribute("dataLevel","40");
+			subListItem2.setAttribute("dataLevel","20");
 			
             var subListItem3 = document.createElement('li');
 			subListItem3.classList.add("level");
             subListItem3.innerHTML = '<span>lv 41-50</span>'
 			subListItem3.setAttribute("dataClass",element);
-			subListItem3.setAttribute("dataLevel","50");
+			subListItem3.setAttribute("dataLevel","30");
 			
             subList.appendChild(subListItem1);
             subList.appendChild(subListItem2);
@@ -168,7 +168,7 @@ function getClassAndGC(target){
 			data.push(obj);
 		}
 	}
-	console.log(data);
+	//console.log(data);
 	listMonsters(data, target);
 }
 
@@ -184,6 +184,7 @@ function listMonsters(data, target){
 		subListItem.setAttribute("dataXCoord", element["Xcoord"]);
 		subListItem.setAttribute("dataYCoord", element["Ycoord"]);
 		subListItem.setAttribute("dataName", element["Name"]);
+		subListItem.setAttribute("dataMapTitle", element["Location"]);
 		subList.appendChild(subListItem);
 	});
 	target.appendChild(subList);
@@ -204,7 +205,7 @@ function initializeMap()
 {
 	map = L.map('map',{crs: L.CRS.Simple, minZoom: 0, inertia: false, maxBounds: bounds});
 	
-	mapImage = L.imageOverlay('images/Maps/CoerthasRegion.PNG', bounds);
+	mapImage = L.imageOverlay('images/Maps/ffxiv-maps-eorzea.png', bounds);
 	mapImage.addTo(map);
 	map.fitBounds(bounds);
 	markerGroup = L.layerGroup()
@@ -224,11 +225,12 @@ function zoomMap()
 function monsterSelected(e)
 {
 	var path = e.getAttribute("dataMap");
-	swapActiveMap(path);
+	var mapTitle = e.getAttribute("datamaptitle");
+	swapActiveMap(path, mapTitle);
 	placeCoords(e);
 }
 
-function swapActiveMap(mapurl)
+function swapActiveMap(mapurl, maptitle)
 {
 	var newMapImage = mapImage = L.imageOverlay('/images/Maps/'+mapurl, bounds);
 	mapImage.remove();
@@ -237,6 +239,7 @@ function swapActiveMap(mapurl)
 	markerGroup.remove();
 	markerGroup = L.layerGroup()
 	markerGroup.addTo(map);
+	$("#maptitle span").get(0).innerHTML=maptitle;
 	/*console.log(map);
 	var mapimg = $('#map > img');
 	$.ajaxSetup({async:false});
